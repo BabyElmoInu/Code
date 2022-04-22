@@ -1,5 +1,5 @@
 <h1 align="center">
-Shᓰtcoin
+CryptoSyno
 <br/><br/>
 <img src="https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png">  
 </h1>
