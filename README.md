@@ -1,5 +1,6 @@
 <h1 align="center">
 CryptoSyno  
+   
 0x6d1a4dea5A380C6Bb763BDd3ED7fB77aF6d480B5  
 <br/><br/>
 <img src="https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png">  
