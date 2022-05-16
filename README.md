@@ -12,7 +12,8 @@ Website: https://Cryptosyno.io
 Telegram: https://t.me/CryptoSyno  
 Discord: https://discord.gg/CryptoSyno  
 Twitter: https://twitter.com/CryptoSyno  
-Doxx: https://www.linkedin.com/in/jacobwmartin/www.linkedin.com/in/jacobwmartin  
+Audit: https://github.com/coinscope-co/audits/blob/main/csyn/audit.pdf
+KYC: https://www.linkedin.com/in/jacobwmartin/www.linkedin.com/in/jacobwmartin  
 
 </div>  
 
