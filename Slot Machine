@@ -12,19 +12,15 @@
 						\$$$$$$  |$$ |                                   \$$$$$$  |                    
 						 \______/ \__|                                    \______/                     
 
-Welcome to CryptoSyno. Whether it's meme-coins or utility-based projects you're after, CryptoSyno looks to develop the 
-primary go-to source for alternative cryptocurrency gambling. The whitepaper (including tokenomics) 
-is on our website.
+Whether it's meme-coins or utility-based projects you're after, 
+CryptoSyno aims to develop the primary go-to source for alternative cryptocurrency gambling.
 
 Website: 
 - https://cryptosyno.io/
 
 Social Media Links:
 - https://discord.gg/CryptoSyno
-- https://twitter.com/CryptoSyno
-
-CryptoSyno ($CSYN) Token Contract
-- 0x6d1a4dea5A380C6Bb763BDd3ED7fB77aF6d480B5
+- https://twitter.com/CryptoSyno_CSYN
 
 For questions/concerns/inquiries, feel free to pop into the discord or email us at: contact@cryptosyno.io
 
@@ -44,11 +40,15 @@ Slot Machine Odds
 - Users will keep getting extra odds increase for every lose if their lose streak is 3+. 
 - After winning any reward, probabilities will reset to normal.
 
+Add your Own Token
+- User submits token.
+- Must be 18 decimals.
+- Must select spin cost.
+- Listing fee 777 CryptoSyno (Sent to dead address)
+
 VIP STATUS
-- x1 $CSYN token sent to the dead address.
+- x1000 $CSYN tokens sent to the dead address.
 - Grants personalized remote concierge service.
-- Exclusive access to upcoming games.
-- Exclusive access to upcoming tokens.
 
 ******************************************************************************************************************************/
 
@@ -65,19 +65,20 @@ interface IBEP20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
-contract SpinV2{
+contract SpinV3{
     address payable public  owner;
+    IBEP20 public listingtoken;
 
     uint256 public totalUsers;
     uint256 public totalSpins;
     uint256 public totalWins;
     uint256 public totalLosses;
-    uint256 public spinCost = 1;
+    uint256 public spinCost = 777 ether;
+    uint256 public VIPCost = 1000 ether;
 
     uint256 public StandardRewardPercentage = 1_000;
     uint256 public BigRewardPercentage = 10_000;
     uint256 public houseEdgeRewardPercentage = 10_000;
-    uint256 public deductionPercentage = 5_000;
 
     uint256 public StandardwinChance = 1_200;
     uint256 public BigwinChance = 200;
@@ -95,11 +96,11 @@ contract SpinV2{
     struct SpinInfo{
         uint256 SpinCount;
         uint256 Reward;
-        uint256 Deduction;
         uint256 WinCount;
         uint256 LoseCount;
         uint256 rewardFactor;
         string LastSpin;
+        bool VIP;
     }
 
     mapping (address => SpinInfo) public Player;
@@ -119,14 +120,22 @@ contract SpinV2{
         _;
     }
 
-    constructor(){
+    constructor(address _token){
         owner = payable(msg.sender);
+        listingtoken = IBEP20(_token);
+        tokens.push(_token);
     }
     function recieve() external payable{
     }
-    function Spin(IBEP20 _token) public isSpin returns(bool success){
-        SpinInfo storage user = Player[msg.sender];
-        _token.transferFrom(msg.sender,address(this), spinCost*(10**_token.decimals()));
+    function Spin(IBEP20 _token,uint256 spincount) external {
+        require(spincount > 0, "Spin count must be greater than 0");
+        for(uint256 i = 0; i < spincount; i++){
+            _spin(_token,msg.sender);
+        }
+    }
+    function _spin(IBEP20 _token,address spiner) internal isSpin returns(bool success){
+        SpinInfo storage user = Player[spiner];
+        _token.transferFrom(spiner,address(this), spinCost);
         bool win;
         uint256 _rewardPercentage;
         uint256 incFactor = 1;
@@ -136,7 +145,7 @@ contract SpinV2{
                 incFactor = incFactor * multiplier;
             }
         }
-        uint256 _spinvalue =uint256(keccak256(abi.encodePacked(msg.sender,block.timestamp,block.difficulty,block.number))) % percentDivider;
+        uint256 _spinvalue =uint256(keccak256(abi.encodePacked(spiner,block.timestamp,block.difficulty,block.number))) % percentDivider;
             if(_spinvalue <= houseEdgewinChance){
             _rewardPercentage = houseEdgeRewardPercentage;
             burn = true;
@@ -161,26 +170,23 @@ contract SpinV2{
 
         totalSpins++;
         if(user.SpinCount == 0) { 
-            users.push(msg.sender); 
+            users.push(spiner); 
             totalUsers++; }
         if(win) { 
-            winers.push(msg.sender); 
+            winers.push(spiner); 
             totalWins++;
             user.Reward = user.Reward + _token.balanceOf(address(this))*_rewardPercentage/percentDivider; 
             if(burn){
                 _token.transfer(address(0xdead),_token.balanceOf(address(this))*_rewardPercentage/percentDivider);
             }else{
-                _token.transfer(msg.sender,_token.balanceOf(address(this))*_rewardPercentage/percentDivider);
+                _token.transfer(spiner,_token.balanceOf(address(this))*_rewardPercentage/percentDivider);
             }
             user.SpinCount++;
             user.WinCount++; 
         }
         else{ 
-            losers.push(msg.sender); 
+            losers.push(spiner); 
             totalLosses++;
-            uint256 _spincost = spinCost*10**_token.decimals();
-            user.Deduction = user.Deduction + _spincost*(deductionPercentage/percentDivider);
-            _token.transfer(msg.sender,_spincost-((_spincost*deductionPercentage)/percentDivider));
             user.SpinCount++;
             user.LoseCount++;
         }
@@ -203,10 +209,6 @@ contract SpinV2{
         StandardRewardPercentage = _StandardRewardPercentage;
         BigRewardPercentage = _BigRewardPercentage;
         houseEdgeRewardPercentage = _houseEdgeRewardPercentage;
-    }
-    function SetDeductionPercentage(uint256 _deductionPercentage) onlyOwner public{
-        require(_deductionPercentage > 0 && _deductionPercentage < percentDivider, "deductionPercentage must be between 0 and percentDivider");
-        deductionPercentage = _deductionPercentage;
     }
     function SetSpinCost(uint256 _spinCost) onlyOwner public{
         require(_spinCost > 0, "spinCost must be greater than 0");
@@ -252,9 +254,22 @@ contract SpinV2{
         
         return Player[user].LastSpin;
     }
+    function VIPSERVICE()external{
+        require(!Player[msg.sender].VIP, "You are already a VIP");
+        listingtoken.transferFrom(msg.sender,address(0xdead),VIPCost);
+        Player[msg.sender].VIP = true;
+    }
+    function GetUserVIP(address user) public view returns(bool){
+        return Player[user].VIP;
+    }
+    function SetVIPCost(uint256 _VIPCost) onlyOwner public{
+        VIPCost = _VIPCost;
+    }
     function addtoken(address _token) public {
         require(address(_token) != address(0), "token must be a valid address");
+        require(IBEP20(_token).decimals() == 18, "token must be a valid IBEP20 token");
         require(!contains(_token), "token already added");
+        listingtoken.transferFrom(msg.sender,address(0xdead),spinCost);
         tokens.push(_token);
     }
     function contains(address _token) public view returns(bool){
@@ -267,5 +282,10 @@ contract SpinV2{
     }
     function length()public view returns(uint256 len){
         len = tokens.length;
+    }
+    function setlistingToken(IBEP20 _listingtoken) public onlyOwner{
+        require(address(_listingtoken) != address(0), "token must be a valid address");
+        listingtoken = _listingtoken;
+        tokens[0] = address(listingtoken);
     }
 }
