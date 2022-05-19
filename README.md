@@ -1,7 +1,7 @@
 <h1 align="center">
 CryptoSyno  
    
-0x6d1a4dea5A380C6Bb763BDd3ED7fB77aF6d480B5  
+0xeb3262dc084b7a8ebf41de9edd32b7686f9a3100  
 <br/><br/>
 <img src="https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png">  
 </h1>
@@ -20,7 +20,7 @@ KYC: https://www.linkedin.com/in/jacobwmartin/www.linkedin.com/in/jacobwmartin
 -------
 ## Welcome to CryptoSyno! ♠
 
-Whether it's meme-coins or utility-based projects you're after, CryptoSyno looks to develop the  
+Whether it's meme-coins or utility-based projects you're after, CryptoSyno aims to develop the  
 primary go-to source for alternative cryptocurrency gambling. The whitepaper (including tokenomics)  
 is on our website.  
 
@@ -46,8 +46,14 @@ Sell
 <img src="https://i.ibb.co/fHkfVbJ/IMAGE-2022-04-22-09-47-16.jpg">
 <img src="https://gcdnb.pbrd.co/images/YhSW6VG5jZvj.jpg?o=1">
 
+## Add your Own Token  
+- User submits token.
+- Must be 18 decimals.
+- Must select spin cost.
+- Listing fee 777 CryptoSyno (Sent to dead address)
+
 ## VIP STATUS
-- x1 $CSYN token sent to the dead address.
+- x1,000 $CSYN token sent to the dead address.
 - Grants personalized remote concierge service.
 - Exclusive access to upcoming games.
 - Exclusive access to upcoming tokens.
