@@ -12,9 +12,8 @@
 						\$$$$$$  |$$ |                                   \$$$$$$  |                    
 						 \______/ \__|                                    \______/                     
 
-Welcome to CryptoSyno. Whether it's meme-coins or utility-based projects you're after, CryptoSyno looks to develop the 
-primary go-to source for alternative cryptocurrency gambling. The whitepaper (including tokenomics) 
-is on our website.
+Whether it's meme-coins or utility-based projects you're after, 
+CryptoSyno aims to develop the primary go-to source for alternative cryptocurrency gambling.
 
 Website: 
 - https://cryptosyno.io/
@@ -41,15 +40,21 @@ Slot Machine Odds
 - Users will keep getting extra odds increase for every lose if their lose streak is 3+. 
 - After winning any reward, probabilities will reset to normal.
 
+Add your Own Token
+- User submits token.
+- Must be 18 decimals.
+- Must select spin cost.
+- Listing fee 777 CryptoSyno (Sent to dead address)
+
 VIP STATUS
-- x1 $CSYN token sent to the dead address.
+- x1000 $CSYN tokens sent to the dead address.
 - Grants personalized remote concierge service.
-- Exclusive access to upcoming games.
-- Exclusive access to upcoming tokens.
 
 ******************************************************************************************************************************/
 
 pragma solidity ^0.8.13;
+
+
 pragma experimental ABIEncoderV2;
 
 // SPDX-License-Identifier:MIT
@@ -343,11 +348,12 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
     mapping(address => bool) private _isExcludedFrommaxTransferLimit;
 
     uint256 private constant MAX = ~uint256(0);
-    uint256 private _tTotal = 777 ether; // 777 total supply
+    uint256 private constant percentDivider = 1_000;
+    uint256 private _tTotal = 7_777_777 ether; // 7.77 million total supply
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
-    string private _name = "Cryptosyno"; // token name
+    string private _name = "CryptoSyno"; // token name
     string private _symbol = "CSYN"; // token ticker
     uint8 private _decimals = 18; // token decimals
 
@@ -392,10 +398,10 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
     constructor()
     {
         _rOwned[owner()] = _rTotal;
-        // //mainnet
-        IDexRouter _dexRouter = IDexRouter(
-            0x10ED43C718714eb63d5aA57B78B54704E256024E
-        );
+        //mainnet
+         IDexRouter _dexRouter = IDexRouter(
+             0x10ED43C718714eb63d5aA57B78B54704E256024E
+         );
         // Create a Dex pair for this new token
         dexPair = IDexFactory(_dexRouter.factory()).createPair(
             address(this),
@@ -635,8 +641,9 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
     }
 
     //only owner can change maxTransferingAmount
-    function setmaxTransferingAmount(uint256 _amount) public onlyOwner {
-        maxTransferingAmount = _amount;
+    function setmaxTransferingAmount(uint256 _percentage) public onlyOwner {
+      require(_percentage > 0 && _percentage <= 100, "BEP20: percentage must be less than 100");
+        maxTransferingAmount = _tTotal.mul(_percentage).div(percentDivider);
     }
 
 
@@ -700,7 +707,7 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
                     .add(_currentslotMachineFee)
                     .add(_currentburnFee)
             )
-            .div(1e3);
+            .div(percentDivider);
         return percentage;
     }
 
@@ -929,17 +936,17 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
             .mul(
                 (_currentslotMachineFee)
             )
-            .div(1e3);
+            .div(percentDivider);
         uint256 tFeeburn = tAmount
             .mul(
                 (
                     _currentburnFee
                 )
             )
-            .div(1e3);
+            .div(percentDivider);
 
         if(tFeeslot > 0){
-            _accumulatedslotMachine = _accumulatedslotMachine.add(tAmount.mul(_currentslotMachineFee).div(1e3));
+            _accumulatedslotMachine = _accumulatedslotMachine.add(tAmount.mul(_currentslotMachineFee).div(percentDivider));
 
             uint256 rFee = tFeeslot.mul(currentRate);
             if (_isExcludedFromReward[slotMachine])
@@ -949,7 +956,7 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
             emit Transfer(_msgSender(), slotMachine, tFeeslot);
         }
         if(tFeeburn > 0){
-            _accumulatedburn = _accumulatedburn.add(tAmount.mul(_currentburnFee).div(1e3));
+            _accumulatedburn = _accumulatedburn.add(tAmount.mul(_currentburnFee).div(percentDivider));
 
             uint256 rFee = tFeeburn.mul(currentRate);
             if (_isExcludedFromReward[burnAddress])
@@ -962,7 +969,7 @@ contract Cryptosyno is Context, IBEP20, Ownable, ReentrancyGuard {
 
     // for automatic redistribution among all holders on each tx
     function _reflectFee(uint256 tAmount) private {
-        uint256 tFee = tAmount.mul(_currentRedistributionFee).div(1e3);
+        uint256 tFee = tAmount.mul(_currentRedistributionFee).div(percentDivider);
         uint256 rFee = tFee.mul(_getRate());
         _rTotal = _rTotal.sub(rFee);
         _tFeeTotal = _tFeeTotal.add(tFee);
