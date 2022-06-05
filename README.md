@@ -28,7 +28,7 @@ is on our website.
 ### Tokenomics 🧪👨🏻‍🔬
 
 Buy
-- 1% Sent to burn address
+- 0% Buy tax
 
 Sell
 - 1% Reflections
