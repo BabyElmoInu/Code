@@ -1,7 +1,7 @@
 <h1 align="center">
 CryptoSyno  
    
-0xeb3262dc084b7a8ebf41de9edd32b7686f9a3100  
+0xce3d6f5dc6b67b209ff096105ea2ba6401d56316  
 <br/><br/>
 <img src="https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png">  
 </h1>
