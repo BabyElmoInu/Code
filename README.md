@@ -1,79 +1,43 @@
 <h1 align="center">
-CryptoSyno  
+Baby Elmo Inu  
    
-0xce3d6f5dc6b67b209ff096105ea2ba6401d56316  
+0x91DcDF6ce1E17dEfEe6b1BC6f523e12EA9CA21Ba 
 <br/><br/>
 <img src="https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png">  
 </h1>
 <div align="center">  
 
 Links  
-Website: https://Cryptosyno.io  
-Telegram: https://t.me/CryptoSyno  
-Discord: https://discord.gg/CryptoSyno  
-Twitter: https://twitter.com/CryptoSyno_CSYN  
-Audit: https://github.com/coinscope-co/audits/blob/main/csyn/audit.pdf  
-KYC: https://www.linkedin.com/in/jacobwmartin/www.linkedin.com/in/jacobwmartin  
+Website: https://BabyElmoInu.com  
+Telegram: https://t.me/BabyElmoInu  
+Discord: https://discord.gg/Elmo  
+Twitter: https://twitter.com/BabyElmoInu  
 
 </div>  
 
 -------
-## Welcome to CryptoSyno! ♠
+## Welcome to Baby Elmo Inu! 🍼
 
-Whether it's meme-coins or utility-based projects you're after, CryptoSyno aims to develop the  
-primary go-to source for alternative cryptocurrency gambling. The whitepaper (including tokenomics)  
-is on our website.  
+Baby Elmo Inu is a memecoin operating on Binance Smart Chain that is devoted towards providing value for their holders by reflecting Elmo Inu and through manual buy back and burns.
 
 -------
 ### Tokenomics 🧪👨🏻‍🔬
 
-Buy
-- 0% Buy tax
+Buy 10%
+- 6% Elmo Inu Dividends
+- 2% Manual buy back and burn
+- 2% Marketing
 
-Sell
-- 1% Reflections
-- 2% Sent to burn address
-- 2% Sent to slot machine reward pool
 
-## Slot Machine Odds
-- House odds 0.1% - 10% of the prize pool is sent to the dead address.
-- Big win odds 0.1% - Win 10% of the prize pool.
-- Standard win odds 8% - Win 1% of the prize pool.
-- After 3 losses in a row, user is granted a 2x  odds increase. 
-- Users will keep getting extra odds increase for every lose if their lose streak is 3+. 
-- After winning any reward, probabilities will reset to normal.
-
-<img src="https://i.ibb.co/fHkfVbJ/IMAGE-2022-04-22-09-47-16.jpg">
-<img src="https://gcdnb.pbrd.co/images/YhSW6VG5jZvj.jpg?o=1">
-
-## Add your Own Token  
-- User submits token.
-- Must be 18 decimals.
-- Must select spin cost.
-- Listing fee 777 CryptoSyno (Sent to dead address)
-
-## VIP STATUS
-- x1,000 $CSYN token sent to the dead address.
-- Grants personalized remote concierge service.
-- Exclusive access to upcoming games.
-- Exclusive access to upcoming tokens.
-   
-## Slippage  
-Buy: 1.5%  
-Sell: 5.5%  
+Sell 10%
+- 6% Elmo Inu Dividends
+- 2% Manual buy back and burn
+- 2% Marketing
 
 
 -------
 ## How do I get coins? 😧 
 
-You can obtain coins from Defi cryptocurrency swaps such as Pancakeswap ahead of our major exchange listings.
-
-
-<div align="center">  
-      
-    
-*********************************************************  
-    
-CryptoSyno™ Mathematics and Engineering Labs
+You can obtain coins from Defi cryptocurrency swaps such as Pancakeswap before Baby Elmo Inu gets listed on an exchange.
      
 </div align="center">     
