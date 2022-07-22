@@ -3,7 +3,7 @@ Baby Elmo Inu
    
 0x91DcDF6ce1E17dEfEe6b1BC6f523e12EA9CA21Ba 
 <br/><br/>
-<img src="https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png">  
+<img src="[https://i.ibb.co/r3qSpxq/cryptosyno-crossed-transparent-1-min.png](https://i.ibb.co/tJ9YfZP/Baby-Elmo-Inu-Twitter-Header.png)">  
 </h1>
 <div align="center">  
 
