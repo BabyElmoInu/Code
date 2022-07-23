@@ -23,16 +23,13 @@ Baby Elmo Inu is a memecoin operating on Binance Smart Chain that is devoted tow
 -------
 ### Tokenomics 🧪👨🏻‍🔬
 
-Buy 10%
-- 6% Elmo Inu Dividends
-- 2% Manual buy back and burn
-- 2% Marketing
+Buy 1%
+- 1% Elmo Inu Dividends
 
 
-Sell 10%
-- 6% Elmo Inu Dividends
+Sell 5%
+- 3% Elmo Inu Dividends
 - 2% Manual buy back and burn
-- 2% Marketing
 
 
 -------
