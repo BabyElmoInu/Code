@@ -18,7 +18,7 @@ Twitter: https://twitter.com/BabyElmoInu
 -------
 ## Welcome to Baby Elmo Inu! 🍼
 
-Baby Elmo Inu is a memecoin operating on Binance Smart Chain that is devoted towards providing value for their holders by reflecting BUSD and through manual buy back and burns.
+Baby Elmo Inu is a memecoin operating on the Binance Smart Chain that provides value for their holders by reflecting BUSD and through manual buy backs and burns.  
 
 -------
 ### Tokenomics 🧪👨🏻‍🔬
